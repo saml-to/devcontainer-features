@@ -1,7 +1,7 @@
 {
   "name": "Assume Role",
   "id": "assume",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Assume a role using SAML.to",
   "options": {
     "role": {
