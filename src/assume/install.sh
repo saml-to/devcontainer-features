@@ -14,4 +14,7 @@ apt-get -y install cron
 
 echo "* * * * * root /usr/local/bin/assumer.sh codespace ${ROLE}" > /etc/cron.d/assume
 
-service cron start
+# Dirty dirty dirty hack to start cron for demonstration purposes
+sed -i '$ d' /etc/init.d/ssh
+echo "service cron start" >> /etc/init.d/ssh
+echo "exit 0" >> /etc/init.d/ssh
