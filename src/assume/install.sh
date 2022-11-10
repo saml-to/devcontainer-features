@@ -13,3 +13,5 @@ apt-get -y update
 apt-get -y install cron
 
 echo "* * * * * root /usr/local/bin/assumer.sh codespace ${ROLE}" > /etc/cron.d/assume
+
+service cron start
