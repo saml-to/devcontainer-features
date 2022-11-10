@@ -9,4 +9,7 @@ chmod +rx /usr/local/bin/assume.sh
 cp assumer.sh /usr/local/bin/assumer.sh
 chmod +rx /usr/local/bin/assumer.sh
 
-/usr/local/bin/assumer.sh codespace ${ROLE} &
+apt-get -y update
+apt-get -y install cron
+
+echo "* * * * * root /usr/local/bin/assumer.sh codespace ${ROLE}" > /etc/cron.d/assume
