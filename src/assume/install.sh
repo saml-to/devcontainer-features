@@ -4,10 +4,9 @@ set -e
 echo "Setting up credential rotation for Role: ${ROLE}"
 
 cp assume.sh /usr/local/bin/assume.sh
-chmod +x /usr/local/bin/assume.sh
+chmod +rx /usr/local/bin/assume.sh
 
-apt-get -y update
-apt-get -y install cron
+cp assumer.sh /usr/local/bin/assumer.sh
+chmod +rx /usr/local/bin/assumer.sh
 
-mkdir -p /etc/cron.d
-echo "* * * * * codespaces /usr/local/bin/assume.sh $ROLE" > /etc/cron.d/assume_role
+/usr/local/bin/assumer.sh codespace ${ROLE} &

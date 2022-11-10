@@ -7,7 +7,7 @@ if [ -z "${GITHUB_TOKEN}" ]; then
 fi
 
 if [ -z "$1" ]; then
-    echo "Usage: ./assume.sh [role]" >&2
+    echo "Usage: assume.sh [role]" >&2
     exit 1
 fi
 
