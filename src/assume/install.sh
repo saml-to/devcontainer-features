@@ -12,9 +12,9 @@ chmod +rx /usr/local/bin/assumer.sh
 apt-get -y update
 apt-get -y install cron
 
+# DIRTY HACK TO ENABLE CRON
+cp 00-enable-cron.sh /etc/profile.d/00-enable-cron.sh
+chmod +rx /etc/profile.d/00-enable-cron.sh
+
 echo "* * * * * root /usr/local/bin/assumer.sh codespace ${ROLE}" > /etc/cron.d/assume
 
-# Dirty dirty dirty hack to start cron for demonstration purposes
-sed -i '$ d' /etc/init.d/ssh
-echo "service cron start" >> /etc/init.d/ssh
-echo "exit 0" >> /etc/init.d/ssh
