@@ -16,17 +16,17 @@ if [ -z "${PROFILE}" ]; then
   PROFILE="default"
 fi
 
-mkdir -p /workspaces/.codespaces/.saml-to
-chmod +r /workspaces/.codespaces/.saml-to
+mkdir -p /etc/saml-to/aws
+chmod -R +r /etc/saml-to
 
-echo "${ROLE}" > /workspaces/.codespaces/.saml-to/aws-role
-chmod +r /workspaces/.codespaces/.saml-to/aws-role
+echo "${ROLE}" > /etc/saml-to/aws/role
+chmod +r /etc/saml-to/aws/role
 
-echo "${REGION}" > /workspaces/.codespaces/.saml-to/aws-region
-chmod +r /workspaces/.codespaces/.saml-to/aws-region
+echo "${REGION}" > /etc/saml-to/aws/region
+chmod +r /etc/saml-to/aws/region
 
-echo "${PROFILE}" > /workspaces/.codespaces/.saml-to/aws-profile
-chmod +r /workspaces/.codespaces/.saml-to/aws-profile
+echo "${PROFILE}" > /etc/saml-to/aws/profile
+chmod +r /etc/saml-to/aws/profile
 
 cp assume-aws-role.sh /usr/local/bin/assume-aws-role.sh
 chmod +rx /usr/local/bin/assume-aws-role.sh

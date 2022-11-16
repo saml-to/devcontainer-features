@@ -9,24 +9,24 @@ if [ -z "${GITHUB_TOKEN}" ]; then
     exit 1
 fi
 
-ROLE="$(cat /workspaces/.codespaces/.saml-to/aws-role)"
+ROLE="$(cat /etc/saml-to/aws/role)"
 
 if [ -z "${ROLE}" ]; then
-    echo "Error: aws-role is not set" >&2
+    echo "Error: /etc/saml-to/aws/role is missing" >&2
     exit 1
 fi
 
-PROFILE="$(cat /workspaces/.codespaces/.saml-to/aws-profile)"
+PROFILE="$(cat /etc/saml-to/aws/profile)"
 
 if [ -z "${PROFILE}" ]; then
-    echo "Error: aws-profile is not set" >&2
+    echo "Error: /etc/saml-to/aws/profile is missing" >&2
     exit 1
 fi
 
-REGION="$(cat /workspaces/.codespaces/.saml-to/aws-region)"
+REGION="$(cat /etc/saml-to/aws/region)"
 
 if [ -z "${REGION}" ]; then
-    echo "Error: aws-region is not set" >&2
+    echo "Error: /etc/saml-to/aws/region is not set" >&2
     exit 1
 fi
 
