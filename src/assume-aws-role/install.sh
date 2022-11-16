@@ -28,7 +28,7 @@ chmod +r /workspaces/.codespaces/shared/.saml-to/aws-region
 echo "${PROFILE}" > /workspaces/.codespaces/shared/.saml-to/aws-profile
 chmod +r /workspaces/.codespaces/shared/.saml-to/aws-profile
 
-cp assume.sh /usr/local/bin/assume-aws-role.sh
+cp assume-aws-role.sh /usr/local/bin/assume-aws-role.sh
 chmod +rx /usr/local/bin/assume-aws-role.sh
 
 echo "Installing Profile Script..."
