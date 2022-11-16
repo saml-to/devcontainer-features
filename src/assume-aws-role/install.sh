@@ -34,11 +34,11 @@ chmod +rx /usr/local/bin/assume-aws-role.sh
 echo "Installing Profile Script..."
 
 # Assumption at session start
-# cat <<EOT >> /etc/profile.d/01-assume-aws-role.sh
-# #!/bin/sh
-# /usr/local/bin/assume-aws-role.sh
-# EOT
-# chmod +rx /etc/profile.d/01-assume-aws-role.sh
+cat <<EOT >> /etc/profile.d/01-assume-aws-role.sh
+#!/bin/sh
+/usr/local/bin/assume-aws-role.sh
+EOT
+chmod +rx /etc/profile.d/01-assume-aws-role.sh
 
 echo "Setting up Credential Refreshes using Cron..."
 
@@ -46,7 +46,7 @@ echo "Setting up Credential Refreshes using Cron..."
 # TODO set credentials globally for all users, unhardcode 'codespace'
 # TODO switch to every 30 minutes
 cat <<EOT >> /etc/cron.d/assume-aws-role
-* * * * * root sudo -S -i -u codespace /usr/local/bin/assume-aws-role.sh
+* * * * * root sudo -S -i -u codespace /usr/local/bin/assume-aws-role.sh | tee -a /tmp/cron.log > /dev/null
 EOT
 chmod +r /etc/cron.d/assume-aws-role
 

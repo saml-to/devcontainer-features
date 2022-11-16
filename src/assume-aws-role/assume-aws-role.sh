@@ -30,6 +30,8 @@ if [ -z "${REGION}" ]; then
     exit 1
 fi
 
+echo "[$(date)] Assuming Credentials for Role: ${ROLE}"
+
 ROLE_ENCODED=$(echo "${ROLE}" | jq -Rr @uri)
 
 samlRequest=$(curl -X POST -H "accept: application/json" -A "devcontaier-features/assume-aws-role" -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://sso.saml.to/github/api/v1/idp/roles/${ROLE_ENCODED}/assume" 2>/dev/null | jq -r .samlHttpRequest)
@@ -55,8 +57,10 @@ echo "[${PROFILE}]" > "${AWS_CREDENTIALS_FILE}"
 echo "aws_access_key_id = ${accessKeyId}" >> "${AWS_CREDENTIALS_FILE}"
 echo "aws_secret_access_key = ${secretAccessKey}" >> "${AWS_CREDENTIALS_FILE}"
 echo "aws_session_token = ${sessionToken}" >> "${AWS_CREDENTIALS_FILE}"
+echo "--> AWS Credentials saved to to: ${AWS_CREDENTIALS_FILE}"
 
 echo "[${PROFILE}]" > "${AWS_CONFIG_FILE}"
 echo "region = ${REGION}" >> "${AWS_CONFIG_FILE}"
+echo "--> AWS Config saved to to: ${AWS_CONFIG_FILE}"
 
-echo "Refreshed Credentials for Role: ${ROLE}"
+echo "--> Successfully Refreshed Credentials for Role: ${ROLE}"
