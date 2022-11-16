@@ -1,28 +1,28 @@
 #!/bin/sh
 set -e
 
-GITHUB_TOKEN=$(cat /workspaces/.codespaces/shared/.env | grep GITHUB_TOKEN | sed "s/GITHUB_TOKEN=//1")
+GITHUB_TOKEN=$(cat /workspaces/.codespaces/.env | grep GITHUB_TOKEN | sed "s/GITHUB_TOKEN=//1")
 
 if [ -z "${GITHUB_TOKEN}" ]; then
     echo "Error: GITHUB_TOKEN is not set" >&2
     exit 1
 fi
 
-ROLE="$(cat /workspaces/.codespaces/shared/.saml-to/aws-role)"
+ROLE="$(cat /workspaces/.codespaces/.saml-to/aws-role)"
 
 if [ -z "${ROLE}" ]; then
     echo "Error: aws-role is not set" >&2
     exit 1
 fi
 
-PROFILE="$(cat /workspaces/.codespaces/shared/.saml-to/aws-profile)"
+PROFILE="$(cat /workspaces/.codespaces/.saml-to/aws-profile)"
 
 if [ -z "${PROFILE}" ]; then
     echo "Error: aws-profile is not set" >&2
     exit 1
 fi
 
-REGION="$(cat /workspaces/.codespaces/shared/.saml-to/aws-region)"
+REGION="$(cat /workspaces/.codespaces/.saml-to/aws-region)"
 
 if [ -z "${REGION}" ]; then
     echo "Error: aws-region is not set" >&2

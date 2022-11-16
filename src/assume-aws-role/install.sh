@@ -16,17 +16,17 @@ if [ -z "${PROFILE}" ]; then
   PROFILE="default"
 fi
 
-mkdir -p /workspaces/.codespaces/shared/.saml-to
-chmod +r /workspaces/.codespaces/shared/.saml-to
+mkdir -p /workspaces/.codespaces/.saml-to
+chmod +r /workspaces/.codespaces/.saml-to
 
-echo "${ROLE}" > /workspaces/.codespaces/shared/.saml-to/aws-role
-chmod +r /workspaces/.codespaces/shared/.saml-to/aws-role
+echo "${ROLE}" > /workspaces/.codespaces/.saml-to/aws-role
+chmod +r /workspaces/.codespaces/.saml-to/aws-role
 
-echo "${REGION}" > /workspaces/.codespaces/shared/.saml-to/aws-region
-chmod +r /workspaces/.codespaces/shared/.saml-to/aws-region
+echo "${REGION}" > /workspaces/.codespaces/.saml-to/aws-region
+chmod +r /workspaces/.codespaces/.saml-to/aws-region
 
-echo "${PROFILE}" > /workspaces/.codespaces/shared/.saml-to/aws-profile
-chmod +r /workspaces/.codespaces/shared/.saml-to/aws-profile
+echo "${PROFILE}" > /workspaces/.codespaces/.saml-to/aws-profile
+chmod +r /workspaces/.codespaces/.saml-to/aws-profile
 
 cp assume-aws-role.sh /usr/local/bin/assume-aws-role.sh
 chmod +rx /usr/local/bin/assume-aws-role.sh
@@ -43,7 +43,6 @@ echo "Installing Profile Script..."
 echo "Setting up Credential Refreshes using Cron..."
 
 # Re-assumption using Cron
-# TODO switch to use credentials from /workspaces/.codespaces/shared/.env-secrets
 # TODO set credentials globally for all users, unhardcode 'codespace'
 # TODO switch to every 30 minutes
 cat <<EOT >> /etc/cron.d/assume-aws-role
@@ -53,6 +52,7 @@ chmod +r /etc/cron.d/assume-aws-role
 
 echo "Installing Cron..."
 # TODO use saml-to cli in daemon mode
+# TODO or VSCode plugin of somekind
 apt-get update
 apt-get -y install --no-install-recommends cron
 rm -rf /var/lib/apt/lists/*
