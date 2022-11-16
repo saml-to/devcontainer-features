@@ -58,4 +58,4 @@ apt-get -y install --no-install-recommends cron
 rm -rf /var/lib/apt/lists/*
 
 cp cron-init.sh /usr/local/share/cron-init.sh
-chmod +rx /usr/local/bin/cron-init.sh
+chmod +rx /usr/local/share/cron-init.sh
