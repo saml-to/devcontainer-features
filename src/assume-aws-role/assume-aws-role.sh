@@ -1,7 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 set -e
 
-GITHUB_TOKEN=$(cat /workspaces/.codespaces/.env | grep GITHUB_TOKEN | sed "s/GITHUB_TOKEN=//1")
+GITHUB_TOKEN=$(cat /workspaces/.codespaces/shared/.env | grep GITHUB_TOKEN | sed "s/GITHUB_TOKEN=//1")
 
 if [ -z "${GITHUB_TOKEN}" ]; then
     echo "Error: GITHUB_TOKEN is not set" >&2

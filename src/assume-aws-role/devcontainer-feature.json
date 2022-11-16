@@ -1,7 +1,7 @@
 {
   "name": "Assume AWS Role",
   "id": "assume-aws-role",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Assume an AWS role using SAML.to",
   "options": {
     "role": {
@@ -19,5 +19,5 @@
       "default": "default"
     }
   },
-  "entrypoint": "service cron start"
+  "entrypoint": "/usr/local/share/cron-init.sh"
 }
