@@ -44,9 +44,8 @@ echo "Setting up Credential Refreshes using Cron..."
 
 # Re-assumption using Cron
 # TODO set credentials globally for all users, unhardcode 'codespace'
-# TODO switch to every 30 minutes
 cat <<EOT >> /etc/cron.d/assume-aws-role
-* * * * * root sudo -S -i -u codespace /usr/local/bin/assume-aws-role.sh | tee -a /tmp/cron.log > /dev/null
+*/30 * * * * root sudo -S -i -u codespace /usr/local/bin/assume-aws-role.sh | tee -a /tmp/cron.log > /dev/null
 EOT
 chmod +r /etc/cron.d/assume-aws-role
 

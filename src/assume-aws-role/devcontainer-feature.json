@@ -1,21 +1,21 @@
 {
   "name": "Assume AWS Role",
   "id": "assume-aws-role",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Assume an AWS role using SAML.to",
   "options": {
     "role": {
       "type": "string",
-      "description": "The AWS Role Name (or ARN)"
+      "description": "[REQUIRED] The AWS Role Name (or ARN)"
     },
     "region": {
       "type": "string",
-      "description": "The AWS region to use",
+      "description": "(Optional) The AWS region ($AWS_DEFAULT_REGION) to set",
       "default": "us-east-1"
     },
     "profile": {
       "type": "string",
-      "description": "The AWS profile to use",
+      "description": "(Optional) The AWS profile ($AWS_PROFILE) to use",
       "default": "default"
     }
   },
