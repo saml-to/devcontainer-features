@@ -7,9 +7,7 @@ A hello world feature
 
 ```json
 "features": {
-    "ghcr.io/saml-to/devcontainer-features/hello:1": {
-        "version": "latest"
-    }
+    "ghcr.io/saml-to/devcontainer-features/hello:1": {}
 }
 ```
 
