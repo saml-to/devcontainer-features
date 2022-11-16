@@ -7,9 +7,7 @@ A feature to remind you of your favorite color
 
 ```json
 "features": {
-    "ghcr.io/saml-to/devcontainer-features/color:1": {
-        "version": "latest"
-    }
+    "ghcr.io/saml-to/devcontainer-features/color:1": {}
 }
 ```
 
