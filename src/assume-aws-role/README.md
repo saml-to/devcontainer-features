@@ -7,7 +7,7 @@ Assume an AWS role using SAML.to
 
 ```json
 "features": {
-    "ghcr.io/saml-to/devcontainer-features/assume-aws-role:0": {}
+    "ghcr.io/saml-to/devcontainer-features/assume-aws-role:1": {}
 }
 ```
 
