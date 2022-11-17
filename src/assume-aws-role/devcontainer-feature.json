@@ -1,7 +1,7 @@
 {
   "name": "Assume AWS Role",
   "id": "assume-aws-role",
-  "version": "0.1.9",
+  "version": "1.0.0",
   "description": "Assume an AWS role using SAML.to",
   "options": {
     "role": {
