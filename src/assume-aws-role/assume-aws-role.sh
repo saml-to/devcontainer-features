@@ -16,13 +16,6 @@ if [ -z "${ROLE}" ]; then
     exit 1
 fi
 
-PROFILE="$(cat /etc/saml-to/aws/profile)"
-
-if [ -z "${PROFILE}" ]; then
-    echo "Error: /etc/saml-to/aws/profile is missing" >&2
-    exit 1
-fi
-
 REGION="$(cat /etc/saml-to/aws/region)"
 
 if [ -z "${REGION}" ]; then
@@ -53,13 +46,13 @@ AWS_CONFIG_FILE="${AWS_DIR}/config"
 
 mkdir -p "${AWS_DIR}"
 
-echo "[${PROFILE}]" > "${AWS_CREDENTIALS_FILE}"
+echo "[default]" > "${AWS_CREDENTIALS_FILE}"
 echo "aws_access_key_id = ${accessKeyId}" >> "${AWS_CREDENTIALS_FILE}"
 echo "aws_secret_access_key = ${secretAccessKey}" >> "${AWS_CREDENTIALS_FILE}"
 echo "aws_session_token = ${sessionToken}" >> "${AWS_CREDENTIALS_FILE}"
 echo "--> AWS Credentials saved to to: ${AWS_CREDENTIALS_FILE}"
 
-echo "[${PROFILE}]" > "${AWS_CONFIG_FILE}"
+echo "[default]" > "${AWS_CONFIG_FILE}"
 echo "region = ${REGION}" >> "${AWS_CONFIG_FILE}"
 echo "--> AWS Config saved to to: ${AWS_CONFIG_FILE}"
 

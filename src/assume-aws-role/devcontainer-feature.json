@@ -1,7 +1,7 @@
 {
   "name": "Assume AWS Role",
   "id": "assume-aws-role",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Assume an AWS role using SAML.to",
   "options": {
     "role": {
@@ -10,13 +10,8 @@
     },
     "region": {
       "type": "string",
-      "description": "(Optional) The AWS region ($AWS_DEFAULT_REGION) to set",
+      "description": "(Optional) The AWS region (in `~/.aws/config) to set",
       "default": "us-east-1"
-    },
-    "profile": {
-      "type": "string",
-      "description": "(Optional) The AWS profile ($AWS_PROFILE) to use",
-      "default": "default"
     }
   },
   "entrypoint": "/usr/local/share/cron-init.sh"

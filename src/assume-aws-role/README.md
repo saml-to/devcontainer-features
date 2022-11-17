@@ -17,7 +17,6 @@ Assume an AWS role using SAML.to
 |-----|-----|-----|-----|
 | role | [REQUIRED] The AWS Role Name (or ARN) | string | undefined |
 | region | (Optional) The AWS region ($AWS_DEFAULT_REGION) to set | string | us-east-1 |
-| profile | (Optional) The AWS profile ($AWS_PROFILE) to use | string | default |
 
 TODO Notes!
 
