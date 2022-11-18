@@ -22,10 +22,10 @@ This feature will store and rotate AWS credentials for the Devcontainer in:
    - `/home/codespace/.aws/credentials`
    - `/home/codespace/.aws/config`
    - When:
-     - When first connecting to a codespace 
+     - When first connecting to a codespace
      - Before the credentials expire (every ~30 minutes)
 
-### Within the AWS CLI
+#### With the AWS CLI
 
 Within a Terminal of Codespaces, you can:
 
@@ -33,7 +33,7 @@ Within a Terminal of Codespaces, you can:
 - `aws s3 cp ...`: For example, if the role is granted S3 Access
 - `aws ec2 describe-instances`: For example, if the role is granted EC2 Access
 
-### Within an Application
+#### Within an Application
 
 If Codespaces launches an Application (Python, Node, etc.) the AWS SDK installed (boto3, @aws-sdk, etc) is configured to read credentials from `~/.aws/credentials`.
 
@@ -121,11 +121,8 @@ print(s3.list_buckets())
      - _Optional_: List any additional Github User IDs that may need this Codespace and Role
 
 1. **Commit and Push** the changes to `saml-to.yml` to the **Default Branch** of the Codespaces Repository.
-   - ⚠️: This MUST be done prior to adding the Feature to `devcontainer.json`.
 
 ### Step 2: Add the Feature to `devcontainer.json`
-
-⚠️ Please [Configure AWS](#configure-aws) before adding this feature to the `devcontainer.json`
 
 1. Modify [`.devcontainer.json`](https://code.visualstudio.com/docs/devcontainers/create-dev-container) to add a `feature` which will setup the AWS Role:
 
