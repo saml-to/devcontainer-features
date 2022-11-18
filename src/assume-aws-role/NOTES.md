@@ -14,14 +14,55 @@ This feature will store and rotate AWS credentials for the Devcontainer in:
 - `/home/codespace/.aws/credentials`
 - `/home/codespace/.aws/config`
 
-## Configuration
+## Usage
+
+1. Follow the [Installation](#installation) instructions
+1. [Launch the Devcontainer](#step-2-add-the-feature-to-devcontainerjson) using GitHub Codespaces
+1. The `assume-aws-role` feature will automatically create and update:
+   - `/home/codespace/.aws/credentials`
+   - `/home/codespace/.aws/config`
+   - When:
+     - When first connecting to a codespace 
+     - Before the credentials expire (every ~30 minutes)
+
+### Within the AWS CLI
+
+Within a Terminal of Codespaces, you can:
+
+- `aws sts get-caller-identity`: Show which role is assumed
+- `aws s3 cp ...`: For example, if the role is granted S3 Access
+- `aws ec2 describe-instances`: For example, if the role is granted EC2 Access
+
+### Within an Application
+
+If Codespaces launches an Application (Python, Node, etc.) the AWS SDK installed (boto3, @aws-sdk, etc) is configured to read credentials from `~/.aws/credentials`.
+
+In Python, for example:
+
+```bash
+pip install boto3
+```
+
+```python
+import boto3
+
+sts = boto3.client('sts')
+s3 = boto3.client('s3')
+
+print(sts.get_caller_identity())
+print(s3.list_buckets())
+```
+
+## Installation
+
+### Step 1: Configure AWS
 
 1. [Download Your Metadata](https://saml.to/metadata) from SAML.to
 1. If you haven't already, create a new **SAML** [Identity Provider](https://console.aws.amazon.com/iamv2/home?#/identity_providers/create) in AWS IAM
    1. **Provider Name**: _saml.to_
-   1. **Metadata Document**: _Upload the Metadata Document from SAML.to_
+   1. **Metadata Document**: _Upload the **IdP Metadata** from [SAML.to](https://saml.to/metadata)_
    1. Make note of the **`Provder ARN`** in the AWS console
-1. Creat݇e or update the [Trust Relationship](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html) on a New or Existing IAM Role to contain the following statement:
+1. [Create or Edit an IAM Role](https://console.aws.amazon.com/iamv2/home?#/roles). Set the [Trust Relationship](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html) on a the Role to contain the following statement:
 
    ```
    {
@@ -79,6 +120,13 @@ This feature will store and rotate AWS credentials for the Devcontainer in:
    - Replace `YOUR_GITHUB_USERNAME` with your GitHub User ID (e.g. `octokat`)
      - _Optional_: List any additional Github User IDs that may need this Codespace and Role
 
+1. **Commit and Push** the changes to `saml-to.yml` to the **Default Branch** of the Codespaces Repository.
+   - ⚠️: This MUST be done prior to adding the Feature to `devcontainer.json`.
+
+### Step 2: Add the Feature to `devcontainer.json`
+
+⚠️ Please [Configure AWS](#configure-aws) before adding this feature to the `devcontainer.json`
+
 1. Modify [`.devcontainer.json`](https://code.visualstudio.com/docs/devcontainers/create-dev-container) to add a `feature` which will setup the AWS Role:
 
    `your-repository/.devcontainer/devcontainer.json` or `your-repository/.devcontainer.json`:
@@ -99,21 +147,7 @@ This feature will store and rotate AWS credentials for the Devcontainer in:
    - Replace `ROLE_ARN` with the ARN of the IAM Role modified above. (e.g. `arn:aws:iam::123456689012:role/admin`)
    - _Note_: If installing `aws` CLI is not desired, remove `"ghcr.io/devcontainers/features/aws-cli:1": {}`
 
-1. **Push or Commit** the changes to `saml-to.yml` and `devcontainer.json` to the **Default Branch** of the Codespaces Repository.
-
-## Usage
-
-1. Launch the Devcontainer using GitHub Codespaces
-1. The `assume-aws-role` feature will automatically create and update:
-   - `/home/codespace/.aws/credentials`
-   - `/home/codespace/.aws/config`
-   - When:
-     - When a codespace is first connected to
-     - Before the credentials expire (every ~30 minutes)
-1. If the `aws` CLI is installed, use commands such as:
-   - `aws sts get-caller-identity`: Show which role is assumed
-   - `aws s3 cp ...`: For example, if the role is granted S3 Access
-   - `aws ec2 describe-instances`: For example, if the role is granted EC2 Access
+1. Rebuild the Container or Restart the Codespace to enable the Feature
 
 ### Changing the Default Region
 
