@@ -106,7 +106,6 @@ print(s3.list_buckets())
      aws:
        roles:
          - name: ROLE_ARN # Change this
-           self: true
            provider:
              variables:
                providerArn: PROVIDER_ARN # Change this
