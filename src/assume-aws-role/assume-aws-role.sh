@@ -31,7 +31,7 @@ assumeResponse=$(curl -X POST -H "accept: application/json" -A "devcontaier-feat
 
 message=$(echo "${assumeResponse}" | jq -r .message)
 
-if [ ! -z "${message}" ]; then
+if [ "${message}" != "null" ]; then
     echo "--> Error: ${message}" >&2
     exit 1
 fi
