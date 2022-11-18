@@ -35,9 +35,9 @@ Within a Terminal of Codespaces, you can:
 
 #### Within an Application
 
-If Codespaces launches an Application (Python, Node, etc.) the AWS SDK installed (boto3, @aws-sdk, etc) is configured to read credentials from `~/.aws/credentials`.
+If Codespaces launches an Application (Python, Node, etc.) the AWS SDK installed ([boto3](https://pypi.org/project/boto3/), [@aws-sdk](https://www.npmjs.com/package/aws-sdk), etc) is configured to read credentials from `~/.aws/credentials`.
 
-In Python, for example:
+In Python (or even a [Jupyter Notebook](https://github.com/github/codespaces-jupyter) codespace!), for example:
 
 ```bash
 pip install boto3
