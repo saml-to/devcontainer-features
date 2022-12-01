@@ -3,6 +3,7 @@
 set -e
 
 GITHUB_TOKEN=$(cat /workspaces/.codespaces/shared/.env | grep GITHUB_TOKEN | sed "s/GITHUB_TOKEN=//1")
+GITHUB_REPOSITORY=$(cat /workspaces/.codespaces/shared/.env | grep GITHUB_REPOSITORY | sed "s/GITHUB_REPOSITORY=//1")
 
 if [ -z "${GITHUB_TOKEN}" ]; then
     echo "Error: GITHUB_TOKEN is not set" >&2
@@ -27,7 +28,7 @@ echo "[$(date)] Assuming Credentials for Role: ${ROLE}"
 
 ROLE_ENCODED=$(echo "${ROLE}" | jq -Rr @uri)
 
-assumeResponse=$(curl -X POST -H "accept: application/json" -A "devcontaier-features/assume-aws-role" -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://sso.saml.to/github/api/v1/idp/roles/${ROLE_ENCODED}/assume" 2>/dev/null)
+assumeResponse=$(curl -X POST -H "accept: application/json" -H "origin: ${GITHUB_REPOSITORY}" -A "devcontaier-features/assume-aws-role" -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://sso.saml.to/github/api/v1/idp/roles/${ROLE_ENCODED}/assume" 2>/dev/null)
 
 message=$(echo "${assumeResponse}" | jq -r .message)
 
