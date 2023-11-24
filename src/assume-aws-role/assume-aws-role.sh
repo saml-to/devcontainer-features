@@ -28,7 +28,7 @@ echo "[$(date)] Assuming Credentials for Role: ${ROLE}"
 
 ROLE_ENCODED=$(echo "${ROLE}" | jq -Rr @uri)
 
-assumeResponse=$(curl -X POST -H "accept: application/json" -H "origin: ${GITHUB_REPOSITORY}" -A "devcontaier-features/assume-aws-role" -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://sso.saml.to/github/api/v1/idp/roles/${ROLE_ENCODED}/assume" 2>/dev/null)
+assumeResponse=$(curl -X POST -H "accept: application/json" -H "origin: ${GITHUB_REPOSITORY}" -A "devcontainer-features/assume-aws-role" -H "Authorization: Bearer ${GITHUB_TOKEN}" "https://sso.saml.to/github/api/v1/idp/roles/${ROLE_ENCODED}/assume" 2>/dev/null)
 
 message=$(echo "${assumeResponse}" | jq -r .message)
 
