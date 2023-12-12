@@ -10,12 +10,36 @@ Yes! Use our [assume-aws-role-action](https://github.com/saml-to/assume-aws-role
 
 Yes! Use our [GitHub App](https://github.com/apps/saml-to) in conjunction with our [CLI](https://github.com/saml-to/cli).
 
-## I'm not getting a role. How do I troubleshoot?
+## I get an error that "Multiple Roles Match" a given Role...
 
-Run the following command inside a Terminal within a running Codespaces:
+Find your organization's `saml-to.yml`. You'll likely find that the same Role ARN is defined twice:
 
-```bash
-/usr/local/bin/assume-aws-role
+```yaml
+# ...snip...
+permissions:
+  aws:
+    roles:
+      - name: arn:aws:iam::123456789012:role/some-role
+        users:
+          github:
+            - some-user
+  another-aws: # the desired provider
+    roles:
+      - name: arn:aws:iam::123456789012:role/some-role
+        users:
+          github:
+            - another-user
 ```
 
-Any errors will be shown. Please [Contact Us](https://saml.to/contact) if you need assistance!
+Update your `devcontainer.json` to explicitly specify which provider to use:
+
+### Usage in `devcontainer.json`
+
+```json
+"features": {
+    "ghcr.io/saml-to/devcontainer-features/assume-aws-role:2": {
+        "role": "arn:aws:iam::123456789012:role/some-role",
+        "provider": "another-aws" // matches "the desired provider"
+    }
+}
+```

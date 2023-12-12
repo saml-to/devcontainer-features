@@ -1,18 +1,33 @@
 {
   "name": "Assume AWS Role",
   "id": "assume-aws-role",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Assume an AWS role using SAML.to",
+  "customizations": {
+    "vscode": {
+      "extensions": ["saml-to.saml-to-vscode"]
+    }
+  },
   "options": {
     "role": {
       "type": "string",
-      "description": "[REQUIRED] The AWS Role Name (or ARN)"
+      "description": "(Optional) The AWS Role Name (or ARN). If specified, role prompts will be skipped.",
+      "default": ""
+    },
+    "profile": {
+      "type": "string",
+      "description": "(Optional) The AWS Profile (in `~/.aws) to set.",
+      "default": "default"
     },
     "region": {
       "type": "string",
-      "description": "(Optional) The AWS region (in `~/.aws/config) to set",
+      "description": "(Optional) The AWS region (in `~/.aws/config) to set.",
       "default": "us-east-1"
+    },
+    "provider": {
+      "type": "string",
+      "description": "(Optional) The Provider Key in the user/organization's `saml-to.yml`.",
+      "default": ""
     }
-  },
-  "entrypoint": "/usr/local/share/cron-init.sh"
+  }
 }

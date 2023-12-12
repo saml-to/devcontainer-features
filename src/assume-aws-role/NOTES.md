@@ -14,6 +14,16 @@ This feature will store and rotate AWS credentials for the Devcontainer in:
 - `/home/codespace/.aws/credentials`
 - `/home/codespace/.aws/config`
 
+### Usage in `devcontainer.json`
+
+```json
+"features": {
+    "ghcr.io/saml-to/devcontainer-features/assume-aws-role:2": {
+        "role": "arn:aws:iam::123456789012:role/some-role"
+    }
+}
+```
+
 ## Usage
 
 1. Follow the [Installation](#installation) instructions
@@ -132,7 +142,7 @@ print(s3.list_buckets())
      ... other devcontainer.json configuration ...
 
      "features": {
-       "ghcr.io/saml-to/devcontainer-features/assume-aws-role:1": {
+       "ghcr.io/saml-to/devcontainer-features/assume-aws-role:2": {
          "role": "ROLE_ARN"
        },
        "ghcr.io/devcontainers/features/aws-cli:1": {}
