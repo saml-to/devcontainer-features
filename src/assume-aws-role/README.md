@@ -7,7 +7,7 @@ Assume an AWS role using SAML.to
 
 ```json
 "features": {
-    "ghcr.io/saml-to/devcontainer-features/assume-aws-role:1": {}
+    "ghcr.io/saml-to/devcontainer-features/assume-aws-role:2": {}
 }
 ```
 
@@ -15,8 +15,16 @@ Assume an AWS role using SAML.to
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| role | [REQUIRED] The AWS Role Name (or ARN) | string | undefined |
-| region | (Optional) The AWS region (in `~/.aws/config) to set | string | us-east-1 |
+| role | (Optional) The AWS Role Name (or ARN). If specified, role prompts will be skipped. | string | - |
+| profile | (Optional) The AWS Profile (in `~/.aws) to set. | string | default |
+| region | (Optional) The AWS region (in `~/.aws/config) to set. | string | us-east-1 |
+| provider | (Optional) The Provider Key in the user/organization's `saml-to.yml`. | string | - |
+
+## Customizations
+
+### VS Code Extensions
+
+- `saml-to.saml-to-vscode`
 
 ## Overview
 
@@ -33,6 +41,16 @@ This feature will store and rotate AWS credentials for the Devcontainer in:
 
 - `/home/codespace/.aws/credentials`
 - `/home/codespace/.aws/config`
+
+### Usage in `devcontainer.json`
+
+```json
+"features": {
+    "ghcr.io/saml-to/devcontainer-features/assume-aws-role:2": {
+        "role": "arn:aws:iam::123456789012:role/some-role"
+    }
+}
+```
 
 ## Usage
 
@@ -152,7 +170,7 @@ print(s3.list_buckets())
      ... other devcontainer.json configuration ...
 
      "features": {
-       "ghcr.io/saml-to/devcontainer-features/assume-aws-role:1": {
+       "ghcr.io/saml-to/devcontainer-features/assume-aws-role:2": {
          "role": "ROLE_ARN"
        },
        "ghcr.io/devcontainers/features/aws-cli:1": {}
