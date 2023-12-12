@@ -8,6 +8,11 @@ echo "Setting up AWS credentials..."
 mkdir -p /etc/saml-to/aws
 chmod -R +r /etc/saml-to
 
+if [ -n "${ORG}" ]; then
+  echo "${ORG}" > /etc/saml-to/org
+  chmod +r /etc/saml-to/org
+fi
+
 if [ -n "${PROVIDER}" ]; then
   echo "${PROVIDER}" > /etc/saml-to/provider
   chmod +r /etc/saml-to/provider

@@ -1,7 +1,7 @@
 {
   "name": "Assume AWS Role",
   "id": "assume-aws-role",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Assume an AWS role using SAML.to",
   "customizations": {
     "vscode": {
@@ -23,6 +23,11 @@
       "type": "string",
       "description": "(Optional) The AWS region (in `~/.aws/config) to set.",
       "default": "us-east-1"
+    },
+    "org": {
+      "type": "string",
+      "description": "(Optional) The GitHub user/organization for which to use a `saml-to.yml`.",
+      "default": ""
     },
     "provider": {
       "type": "string",
