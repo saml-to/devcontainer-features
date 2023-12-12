@@ -18,6 +18,7 @@ Assume an AWS role using SAML.to
 | role | (Optional) The AWS Role Name (or ARN). If specified, role prompts will be skipped. | string | - |
 | profile | (Optional) The AWS Profile (in `~/.aws) to set. | string | default |
 | region | (Optional) The AWS region (in `~/.aws/config) to set. | string | us-east-1 |
+| org | (Optional) The GitHub user/organization for which to use a `saml-to.yml`. | string | - |
 | provider | (Optional) The Provider Key in the user/organization's `saml-to.yml`. | string | - |
 
 ## Customizations
