@@ -40,3 +40,9 @@ if [ -z "${HOMEDIR}" ]; then
 fi
 echo "${HOMEDIR}" > /etc/saml-to/aws/homedir
 chmod +r /etc/saml-to/aws/homedir
+
+if [ -z "${SUDO}" ]; then
+  SUDO="false"
+fi
+echo "${SUDO}" > /etc/saml-to/aws/sudo
+chmod +r /etc/saml-to/aws/sudo

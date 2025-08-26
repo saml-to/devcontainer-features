@@ -40,6 +40,11 @@
       "type": "string",
       "description": "(Optional) The home directory for which to use.",
       "default": "~"
+    },
+    "sudo": {
+      "type": "boolean",
+      "description": "(Optional) Write files using superuser privileges (requires NOPASSWD enabled).",
+      "default": false
     }
   }
 }
