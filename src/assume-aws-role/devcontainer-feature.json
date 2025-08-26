@@ -5,7 +5,9 @@
   "description": "Assume an AWS role using SAML.to",
   "customizations": {
     "vscode": {
-      "extensions": ["saml-to.saml-to-vscode"]
+      "extensions": [
+        "saml-to.saml-to-vscode"
+      ]
     }
   },
   "options": {
