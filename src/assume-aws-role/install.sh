@@ -34,3 +34,9 @@ if [ -z "${PROFILE}" ]; then
 fi
 echo "${PROFILE}" > /etc/saml-to/aws/profile
 chmod +r /etc/saml-to/aws/profile
+
+if [ -z "${HOMEDIR}" ]; then
+  HOMEDIR="~"
+fi
+echo "${HOMEDIR}" > /etc/saml-to/aws/homedir
+chmod +r /etc/saml-to/aws/homedir

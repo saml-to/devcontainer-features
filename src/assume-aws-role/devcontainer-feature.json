@@ -33,6 +33,11 @@
       "type": "string",
       "description": "(Optional) The Provider Key in the user/organization's `saml-to.yml`.",
       "default": ""
+    },
+    "homeDir": {
+      "type": "string",
+      "description": "(Optional) The home directory for which to use.",
+      "default": "~"
     }
   }
 }
